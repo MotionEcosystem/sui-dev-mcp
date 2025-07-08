@@ -4,12 +4,12 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { 
-  Search, 
-  CodeXml, 
-  ArrowRight, 
-  BookOpen, 
-  Github, 
+import {
+  Search,
+  CodeXml,
+  ArrowRight,
+  BookOpen,
+  Github,
   Wrench,
   Terminal,
   Mail,
@@ -31,7 +31,7 @@ export default function Home() {
       {/* Enhanced background with Motion branding */}
       <div className="fixed inset-0 gradient-mesh"></div>
       <div className="fixed inset-0 hero-glow"></div>
-      <div className="fixed inset-0 opacity-[0.02] dark:opacity-[0.03] pointer-events-none z-10" 
+      <div className="fixed inset-0 opacity-[0.02] dark:opacity-[0.03] pointer-events-none z-10"
            style={{
              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
            }}>
@@ -73,11 +73,11 @@ export default function Home() {
 
         {/* Motion logo as floating element */}
         <div className="absolute top-1/4 right-1/3 w-16 h-16 opacity-20 dark:opacity-30">
-          <Image 
-            src="/motion/Frame2.svg" 
-            alt="Motion Labs" 
-            width={64} 
-            height={64} 
+          <Image
+            src="/motion/Frame2.svg"
+            alt="Motion Labs"
+            width={64}
+            height={64}
             className="w-full h-full motion-spin"
           />
         </div>
@@ -95,11 +95,11 @@ export default function Home() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3">
               <div className="motion-logo">
-                <Image 
-                  src="/motion/Frame2.svg" 
-                  alt="Motion Labs" 
-                  width={32} 
-                  height={32} 
+                <Image
+                  src="/motion/Frame2.svg"
+                  alt="Motion Labs"
+                  width={32}
+                  height={32}
                   className="w-8 h-8"
                 />
               </div>
@@ -135,24 +135,24 @@ export default function Home() {
               <Zap className="w-3 h-3 mr-1" />
               AI-Powered Development Tools
             </Badge>
-            
+
             <h1 className="text-6xl font-black mb-6 text-foreground tracking-tight">
               Sui Developer<br/>
               <span className="text-motion-blue">MCP Server</span>
             </h1>
-            
+
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-4">
-              Transform your Sui development experience with AI-powered tools that provide intelligent code assistance, 
+              Transform your Sui development experience with AI-powered tools that provide intelligent code assistance,
               documentation search, and debugging help directly in your IDE.
             </p>
-            
+
             <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-8">
               <span>Powered by</span>
-              <Image 
-                src="/motion/Frame2.svg" 
-                alt="Motion Labs" 
-                width={16} 
-                height={16} 
+              <Image
+                src="/motion/Frame2.svg"
+                alt="Motion Labs"
+                width={16}
+                height={16}
                 className="w-4 h-4"
               />
               <span className="font-semibold text-motion-blue">Motion Labs</span>
@@ -166,14 +166,14 @@ export default function Home() {
                 <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
             </Link>
-            
+
             <Link href="/examples">
               <Button variant="outline" className="px-8 py-3">
                 <CodeXml className="h-4 w-4 mr-2" />
                 View Examples
               </Button>
             </Link>
-            
+
             <Link href="/tools">
               <Button variant="outline" className="px-8 py-3">
                 <Wrench className="h-4 w-4 mr-2" />
@@ -192,7 +192,7 @@ export default function Home() {
               </div>
               <CardTitle className="text-xl font-bold text-foreground">Smart Documentation Search</CardTitle>
               <CardDescription className="text-sm text-muted-foreground leading-relaxed">
-                AI-powered semantic search across Sui documentation, ecosystem docs, and community resources. 
+                AI-powered semantic search across Sui documentation, ecosystem docs, and community resources.
                 Get contextual answers with code examples.
               </CardDescription>
             </CardHeader>
@@ -212,7 +212,7 @@ export default function Home() {
               </div>
               <CardTitle className="text-xl font-bold text-foreground">Code Analysis & Generation</CardTitle>
               <CardDescription className="text-sm text-muted-foreground leading-relaxed">
-                Advanced Move code analysis, security auditing, and TypeScript SDK generation. 
+                Advanced Move code analysis, security auditing, and TypeScript SDK generation.
                 Optimize your smart contracts and frontend integration.
               </CardDescription>
             </CardHeader>
@@ -232,7 +232,7 @@ export default function Home() {
               </div>
               <CardTitle className="text-xl font-bold text-foreground">Error Debugging</CardTitle>
               <CardDescription className="text-sm text-muted-foreground leading-relaxed">
-                Decode complex Sui transaction errors with intelligent explanations and actionable solutions. 
+                Decode complex Sui transaction errors with intelligent explanations and actionable solutions.
                 Reduce debugging time significantly.
               </CardDescription>
             </CardHeader>
@@ -358,21 +358,21 @@ export default function Home() {
           <Card className="bg-motion-blue text-white max-w-3xl mx-auto border-0">
             <CardContent className="pt-12 pb-12">
               <div className="flex items-center justify-center mb-6">
-                <Image 
-                  src="/motion/Frame2.svg" 
-                  alt="Motion Labs" 
-                  width={48} 
-                  height={48} 
+                <Image
+                  src="/motion/Frame2.svg"
+                  alt="Motion Labs"
+                  width={48}
+                  height={48}
                   className="w-12 h-12 mr-3"
                 />
                 <h3 className="text-3xl font-bold">Ready to Accelerate Your Sui Development?</h3>
               </div>
-              
+
               <p className="text-blue-100 mb-8 text-lg leading-relaxed max-w-2xl mx-auto">
-                Join thousands of developers using Motion Labs&apos; AI-powered tools to build faster, 
+                Join thousands of developers using Motion Labs&apos; AI-powered tools to build faster,
                 more secure, and better documented Sui applications.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/docs">
                   <Button className="bg-white text-motion-blue hover:bg-white/90 px-8 py-3">
@@ -380,7 +380,7 @@ export default function Home() {
                     Read Documentation
                   </Button>
                 </Link>
-                
+
                 <Link href="https://github.com/MotionEcosystem/sui-dev-mcp" className="inline-block">
                   <Button variant="outline" className="border-white/20 text-primary hover:bg-white/10 px-8 py-3">
                     <Github className="h-5 w-5 mr-2" />
@@ -399,11 +399,11 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <Image 
-                  src="/motion/Frame2.svg" 
-                  alt="Motion Labs" 
-                  width={32} 
-                  height={32} 
+                <Image
+                  src="/motion/Frame2.svg"
+                  alt="Motion Labs"
+                  width={32}
+                  height={32}
                   className="w-8 h-8 motion-logo"
                 />
                 <div className="flex flex-col">
@@ -412,7 +412,7 @@ export default function Home() {
                 </div>
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                AI-powered development tools for the Sui blockchain ecosystem. 
+                AI-powered development tools for the Sui blockchain ecosystem.
                 Build faster, debug smarter, and deploy with confidence.
               </p>
               <div className="flex gap-3">

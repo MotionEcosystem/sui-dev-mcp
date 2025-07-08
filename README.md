@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Motion Labs](public/motion/Frame2.svg)
+![Sui Developer MCP Server - AI-Powered Blockchain Development Tools](public/banner.png)
 
 **AI-Powered Development Tools for the Sui Blockchain Ecosystem**
 
@@ -13,8 +13,9 @@ _Built with ❤️ by [Motion Labs](https://motionecosystem.com)_
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?logo=vercel&logoColor=white)](https://sui-dev-mcp.vercel.app)
 
-[🌐 Live Demo](https://sui-dev-mcp.motion.com) • [📚 Documentation](https://sui-dev-mcp.motion.com/docs) • [🛠️ Tools](https://sui-dev-mcp.motion.com/tools) • [🤝 Contributing](#contributing)
+[🌐 Live Demo](https://sui-dev-mcp.vercel.app) • [📚 Documentation](https://sui-dev-mcp.vercel.app/docs) • [🛠️ Tools](https://sui-dev-mcp.vercel.app/tools) • [🤝 Contributing](#contributing)
 
 </div>
 
@@ -146,122 +147,4 @@ sui-dev-mcp/
 
 The application features comprehensive Motion Labs branding:
 
-- **Primary Color**: `#215FF6` (Motion Blue)
-- **Logo Integration**: Motion Labs logo throughout the interface
-- **Consistent Theming**: Light/dark mode support with Motion brand colors
-- **Professional Attribution**: "by Motion Labs" branding
-
-### AI Integration
-
-- **MCP Protocol**: Model Context Protocol for AI integration
-- **Semantic Search**: Vector-based documentation search
-- **Code Analysis**: AI-powered Move code review
-- **Error Decoding**: Intelligent transaction error interpretation
-
-## 🧪 Testing
-
-### Unit Tests
-
-```bash
-npm run test
-npm run test:watch  # Watch mode
-npm run test:ci     # CI mode with coverage
-```
-
-### E2E Tests
-
-```bash
-npm run test:e2e
-npm run test:e2e:ui  # Interactive UI mode
-```
-
-### Performance Testing
-
-```bash
-npx lhci autorun  # Lighthouse CI
-```
-
-## 🚀 Deployment
-
-### Production Build
-
-```bash
-npm run build
-npm start
-```
-
-### Environment Variables
-
-```bash
-# Optional: Analytics and monitoring
-NEXT_PUBLIC_GA_ID=your_google_analytics_id
-VERCEL_URL=your_production_url
-```
-
-### Vercel Deployment
-
-1. Connect your GitHub repository to Vercel
-2. Configure environment variables
-3. Deploy automatically on push to `main`
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-### Development Workflow
-
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feat/amazing-feature
-   ```
-3. **Make your changes**
-4. **Run tests**
-   ```bash
-   npm run test
-   npm run test:e2e
-   ```
-5. **Commit with conventional commits**
-   ```bash
-   git commit -m "feat: add amazing feature"
-   ```
-6. **Push and create PR**
-
-### Commit Convention
-
-We use [Conventional Commits](https://www.conventionalcommits.org/):
-
-- `feat:` New features
-- `fix:` Bug fixes
-- `docs:` Documentation changes
-- `style:` Code style changes
-- `refactor:` Code refactoring
-- `test:` Test changes
-- `chore:` Maintenance tasks
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Sui Foundation** for the amazing blockchain platform
-- **Mysten Labs** for comprehensive documentation
-- **The Sui Community** for ecosystem contributions
-- **Motion Labs Team** for making this project possible
-
-## 📞 Contact
-
-- **Website**: [motionecosystem.com](https://motionecosystem.com)
-- **Email**: [hello@motionecosystem.com](mailto:hello@motionecosystem.com)
-- **GitHub**: [@MotionEcosystem](https://github.com/MotionEcosystem)
-
----
-
-<div align="center">
-
-**Built with ⚡ by Motion Labs**
-
-_Accelerating the future of blockchain development_
-
-</div>
+- **Primary Color**: `#215FF6`
