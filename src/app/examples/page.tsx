@@ -770,7 +770,7 @@ fi`,
                 Need Help with Your Project?
               </h3>
               <p className="text-zinc-600 mb-6 leading-relaxed">
-                Can't find what you're looking for? Ask the Sui Developer MCP directly in your IDE 
+                Can&apos;t find what you&apos;re looking for? Ask the Sui Developer MCP directly in your IDE 
                 for personalized code examples and guidance.
               </p>
               <div className="flex gap-3 justify-center">

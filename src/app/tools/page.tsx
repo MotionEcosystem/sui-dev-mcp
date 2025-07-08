@@ -14,8 +14,6 @@ import {
   Play,
   Zap,
   Terminal,
-  FileText,
-  Shield,
   Bot,
   Cpu,
   Database,

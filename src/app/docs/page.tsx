@@ -7,12 +7,10 @@ import { Badge } from "@/components/ui/badge"
 import {
   BookOpen,
   Code2,
-  Terminal,
   Copy,
   Check,
   ChevronRight,
   ArrowLeft,
-  ExternalLink,
   AlertCircle,
   CheckCircle,
   Info,
