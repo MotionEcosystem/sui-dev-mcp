@@ -661,7 +661,7 @@ await mcp.call('error_decoder', {
                       <CardTitle className="text-zinc-900">Connection Issues</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-zinc-700">If you can't connect to the Sui network:</p>
+                      <p className="text-zinc-700">If you can&apos;t connect to the Sui network:</p>
                       <ul className="space-y-2 text-zinc-700">
                         <li className="flex items-start gap-2">
                           <ChevronRight className="h-4 w-4 mt-1 text-blue-600" />
