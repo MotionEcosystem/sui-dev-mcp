@@ -1,21 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  prefix: "",
+  darkMode: 'class',
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -51,25 +42,79 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Motion Labs brand colors
+        'motion-blue': {
+          DEFAULT: 'hsl(var(--motion-blue))',
+          dark: 'hsl(var(--motion-blue-dark))',
+          light: 'hsl(var(--motion-blue-light))',
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        'physics-float': 'float 6s ease-in-out infinite',
+        'physics-orbit': 'orbit 20s linear infinite',
+        'physics-pulse': 'pulse-glow 3s ease-in-out infinite',
+        'physics-drift': 'drift 12s ease-in-out infinite',
+        'motion-spin': 'motion-spin 20s linear infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': {
+            transform: 'translateY(0px) rotate(0deg)',
+          },
+          '50%': {
+            transform: 'translateY(-20px) rotate(180deg)',
+          },
+        },
+        orbit: {
+          '0%': {
+            transform: 'rotate(0deg) translateX(100px) rotate(0deg)',
+          },
+          '100%': {
+            transform: 'rotate(360deg) translateX(100px) rotate(-360deg)',
+          },
+        },
+        'pulse-glow': {
+          '0%, 100%': {
+            opacity: 0.4,
+            transform: 'scale(1)',
+            boxShadow: '0 0 0 0 rgba(33, 95, 246, 0.4)',
+          },
+          '50%': {
+            opacity: 0.8,
+            transform: 'scale(1.1)',
+            boxShadow: '0 0 20px 5px rgba(33, 95, 246, 0.2)',
+          },
+        },
+        drift: {
+          '0%, 100%': {
+            transform: 'translate(0px, 0px) rotate(0deg)',
+          },
+          '25%': {
+            transform: 'translate(10px, -10px) rotate(90deg)',
+          },
+          '50%': {
+            transform: 'translate(-5px, -20px) rotate(180deg)',
+          },
+          '75%': {
+            transform: 'translate(-10px, -5px) rotate(270deg)',
+          },
+        },
+        'motion-spin': {
+          '0%': {
+            transform: 'rotate(0deg)',
+          },
+          '100%': {
+            transform: 'rotate(360deg)',
+          },
+        },
       },
     },
   },
