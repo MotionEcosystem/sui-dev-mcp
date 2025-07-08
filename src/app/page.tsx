@@ -378,7 +378,7 @@ export default function SuiDeveloperMCP() {
                   </Button>
                 </Link>
                 <a href="https://github.com/sui-dev/mcp-server" className="inline-block">
-                  <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-3">
+                  <Button size="lg" variant="outline" className="border-white/20 text-primary hover:bg-white/10 px-8 py-3">
                     <Github className="h-5 w-5 mr-2" />
                     Star on GitHub
                   </Button>
