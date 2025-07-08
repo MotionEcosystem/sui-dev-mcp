@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   images: {
@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-    ];
+    ]
   },
   async redirects() {
     return [
@@ -40,8 +40,8 @@ const nextConfig: NextConfig = {
         destination: '/banner.png',
         permanent: true,
       },
-    ];
+    ]
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

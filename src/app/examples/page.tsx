@@ -1,28 +1,28 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { ThemeToggle } from '@/components/theme-toggle'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import {
+  ArrowLeft,
+  Check,
   Code2,
   Copy,
-  Check,
-  ArrowLeft,
-  Play,
   Download,
   ExternalLink,
   FileText,
   GitBranch,
   Package,
+  Play,
   Zap,
-} from "lucide-react"
-import Link from "next/link"
+} from 'lucide-react'
+import Link from 'next/link'
+import { useState } from 'react'
 
 export default function ExamplesPage() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null)
-  const [activeCategory, setActiveCategory] = useState("smart-contracts")
+  const [activeCategory, setActiveCategory] = useState('smart-contracts')
 
   const copyCode = (code: string, id: string) => {
     navigator.clipboard.writeText(code)
@@ -31,18 +31,18 @@ export default function ExamplesPage() {
   }
 
   const categories = [
-    { id: "smart-contracts", title: "Smart Contracts", icon: Code2 },
-    { id: "frontend", title: "Frontend Integration", icon: Package },
-    { id: "defi", title: "DeFi Examples", icon: Zap },
-    { id: "nft", title: "NFT & Gaming", icon: FileText },
-    { id: "tools", title: "Developer Tools", icon: GitBranch },
+    { id: 'smart-contracts', title: 'Smart Contracts', icon: Code2 },
+    { id: 'frontend', title: 'Frontend Integration', icon: Package },
+    { id: 'defi', title: 'DeFi Examples', icon: Zap },
+    { id: 'nft', title: 'NFT & Gaming', icon: FileText },
+    { id: 'tools', title: 'Developer Tools', icon: GitBranch },
   ]
 
   const smartContractExamples = [
     {
-      title: "Simple Coin Contract",
-      description: "Create a custom coin with minting capabilities",
-      difficulty: "Beginner",
+      title: 'Simple Coin Contract',
+      description: 'Create a custom coin with minting capabilities',
+      difficulty: 'Beginner',
       code: `module my_coin::my_coin {
     use sui::coin::{Self, Coin, TreasuryCap};
     use sui::url::{Self, Url};
@@ -81,12 +81,12 @@ export default function ExamplesPage() {
         coin::burn(treasury_cap, coin);
     }
 }`,
-      files: ["sources/my_coin.move", "Move.toml"],
+      files: ['sources/my_coin.move', 'Move.toml'],
     },
     {
-      title: "NFT Collection",
-      description: "Complete NFT collection with metadata and minting",
-      difficulty: "Intermediate",
+      title: 'NFT Collection',
+      description: 'Complete NFT collection with metadata and minting',
+      difficulty: 'Intermediate',
       code: `module nft_collection::collection {
     use sui::object::{Self, UID};
     use sui::transfer;
@@ -176,15 +176,15 @@ export default function ExamplesPage() {
         transfer::public_transfer(nft, recipient);
     }
 }`,
-      files: ["sources/collection.move", "Move.toml"],
+      files: ['sources/collection.move', 'Move.toml'],
     },
   ]
 
   const frontendExamples = [
     {
-      title: "Connect to Sui Wallet",
-      description: "Basic wallet connection and transaction signing",
-      difficulty: "Beginner",
+      title: 'Connect to Sui Wallet',
+      description: 'Basic wallet connection and transaction signing',
+      difficulty: 'Beginner',
       code: `import { ConnectButton, useWallet } from '@suiet/wallet-kit';
 import { SuiClient, getFullnodeUrl } from '@mysten/sui.js/client';
 import { TransactionBlock } from '@mysten/sui.js/transactions';
@@ -204,7 +204,7 @@ function App() {
 
     try {
       const txb = new TransactionBlock();
-      
+
       // Replace with your package ID and function
       txb.moveCall({
         target: \`\${PACKAGE_ID}::nft::mint\`,
@@ -247,12 +247,12 @@ function App() {
 }
 
 export default App;`,
-      files: ["src/App.tsx", "package.json"],
+      files: ['src/App.tsx', 'package.json'],
     },
     {
-      title: "Query Objects and Events",
-      description: "Fetch and display blockchain data in React",
-      difficulty: "Intermediate",
+      title: 'Query Objects and Events',
+      description: 'Fetch and display blockchain data in React',
+      difficulty: 'Intermediate',
       code: `import React, { useState, useEffect } from 'react';
 import { SuiClient, getFullnodeUrl } from '@mysten/sui.js/client';
 
@@ -272,7 +272,7 @@ function NFTGallery({ ownerAddress }: { ownerAddress: string }) {
 
   const fetchNFTs = async () => {
     if (!ownerAddress) return;
-    
+
     setLoading(true);
     try {
       // Get all objects owned by the address
@@ -315,8 +315,8 @@ function NFTGallery({ ownerAddress }: { ownerAddress: string }) {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       {nfts.map((nft) => (
         <div key={nft.id} className="border rounded-lg p-4">
-          <img 
-            src={nft.image_url} 
+          <img
+            src={nft.image_url}
             alt={nft.name}
             className="w-full h-48 object-cover rounded"
           />
@@ -330,15 +330,15 @@ function NFTGallery({ ownerAddress }: { ownerAddress: string }) {
 }
 
 export default NFTGallery;`,
-      files: ["src/NFTGallery.tsx", "src/types.ts"],
+      files: ['src/NFTGallery.tsx', 'src/types.ts'],
     },
   ]
 
   const defiExamples = [
     {
-      title: "Liquidity Pool",
-      description: "AMM-style liquidity pool with swapping functionality",
-      difficulty: "Advanced",
+      title: 'Liquidity Pool',
+      description: 'AMM-style liquidity pool with swapping functionality',
+      difficulty: 'Advanced',
       code: `module defi::liquidity_pool {
     use sui::object::{Self, UID};
     use sui::coin::{Self, Coin};
@@ -367,7 +367,7 @@ export default NFTGallery;`,
     ) {
         let coin_a_value = coin::value(&coin_a);
         let coin_b_value = coin::value(&coin_b);
-        
+
         assert!(coin_a_value > 0 && coin_b_value > 0, 0);
 
         let lp_supply = math::sqrt(coin_a_value * coin_b_value);
@@ -442,28 +442,28 @@ export default NFTGallery;`,
         let lp_tokens = (coin_a_optimal * pool.lp_supply) / coin_a_reserve;
         pool.lp_supply = pool.lp_supply + lp_tokens;
 
-        // Transfer LP tokens to user (simplified - in real implementation, 
+        // Transfer LP tokens to user (simplified - in real implementation,
         // you'd create actual LP token coins)
     }
 }`,
-      files: ["sources/liquidity_pool.move", "sources/math.move"],
+      files: ['sources/liquidity_pool.move', 'sources/math.move'],
     },
   ]
 
   const getCurrentExamples = () => {
     switch (activeCategory) {
-      case "smart-contracts":
+      case 'smart-contracts':
         return smartContractExamples
-      case "frontend":
+      case 'frontend':
         return frontendExamples
-      case "defi":
+      case 'defi':
         return defiExamples
-      case "nft":
+      case 'nft':
         return [
           {
-            title: "Gaming NFT with Attributes",
-            description: "RPG-style NFT with dynamic attributes and leveling",
-            difficulty: "Advanced",
+            title: 'Gaming NFT with Attributes',
+            description: 'RPG-style NFT with dynamic attributes and leveling',
+            difficulty: 'Advanced',
             code: `module gaming::character {
     use sui::object::{Self, UID};
     use sui::transfer;
@@ -514,15 +514,15 @@ export default NFTGallery;`,
         ctx: &mut TxContext
     ) {
         assert!(character.owner == tx_context::sender(ctx), 0);
-        
+
         character.experience = character.experience + exp_gained;
-        
+
         // Level up logic
         let exp_needed = (character.level as u64) * 100;
         if (character.experience >= exp_needed) {
             character.level = character.level + 1;
             character.experience = character.experience - exp_needed;
-            
+
             // Increase stats on level up
             character.strength = character.strength + 1;
             character.agility = character.agility + 1;
@@ -535,15 +535,15 @@ export default NFTGallery;`,
         }
     }
 }`,
-            files: ["sources/character.move", "sources/game_logic.move"],
+            files: ['sources/character.move', 'sources/game_logic.move'],
           },
         ]
-      case "tools":
+      case 'tools':
         return [
           {
-            title: "Package Deployment Script",
-            description: "Automated deployment and verification script",
-            difficulty: "Intermediate",
+            title: 'Package Deployment Script',
+            description: 'Automated deployment and verification script',
+            difficulty: 'Intermediate',
             code: `#!/bin/bash
 
 # Sui Package Deployment Script
@@ -615,7 +615,7 @@ if [ $? -eq 0 ]; then
 else
     echo "⚠️  Package verification failed, but deployment may still be successful"
 fi`,
-            files: ["scripts/deploy.sh", "deploy.config", "package.json"],
+            files: ['scripts/deploy.sh', 'deploy.config', 'package.json'],
           },
         ]
       default:
@@ -624,138 +624,150 @@ fi`,
   }
 
   return (
-    <div className="min-h-screen bg-white text-zinc-900 font-['Inter',ui-sans-serif,system-ui] antialiased">
+    <div className="min-h-screen bg-white font-['Inter',ui-sans-serif,system-ui] text-zinc-900 antialiased">
       {/* Noise texture overlay */}
-      <div 
-        className="fixed inset-0 opacity-[0.015] pointer-events-none z-10"
+      <div
+        className='pointer-events-none fixed inset-0 z-10 opacity-[0.015]'
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}
       />
 
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-zinc-200/50">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-4">
-              <Link href="/" className="flex items-center gap-2 text-zinc-600 hover:text-zinc-900 transition-colors">
-                <ArrowLeft className="h-4 w-4" />
+      <header className='sticky top-0 z-50 border-b border-zinc-200/50 bg-white/80 backdrop-blur-xl'>
+        <div className='container mx-auto px-6 lg:px-8'>
+          <div className='flex h-16 items-center justify-between'>
+            <div className='flex items-center gap-4'>
+              <Link
+                href='/'
+                className='flex items-center gap-2 text-zinc-600 transition-colors hover:text-zinc-900'
+              >
+                <ArrowLeft className='h-4 w-4' />
                 Back to Home
               </Link>
             </div>
-            <div className="flex items-center gap-2">
-              <Code2 className="h-5 w-5 text-blue-600" />
-              <span className="font-bold text-zinc-900">Examples & Tutorials</span>
+            <div className='flex items-center gap-2'>
+              <Code2 className='h-5 w-5 text-blue-600' />
+              <span className='font-bold text-zinc-900'>Examples & Tutorials</span>
             </div>
             <ThemeToggle />
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-6 lg:px-8 py-12 relative z-20">
+      <div className='container relative z-20 mx-auto px-6 py-12 lg:px-8'>
         {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-black mb-6 text-zinc-900 tracking-tight">
+        <div className='mb-16 text-center'>
+          <h1 className='mb-6 text-5xl font-black tracking-tight text-zinc-900'>
             Code Examples & Tutorials
           </h1>
-          <p className="text-xl text-zinc-600 max-w-3xl mx-auto leading-relaxed">
-            Learn Sui development with practical examples, from basic smart contracts to complex DeFi protocols. 
-            All examples are production-ready and thoroughly tested.
+          <p className='mx-auto max-w-3xl text-xl leading-relaxed text-zinc-600'>
+            Learn Sui development with practical examples, from basic smart contracts to complex
+            DeFi protocols. All examples are production-ready and thoroughly tested.
           </p>
         </div>
 
         {/* Category Navigation */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((category) => (
+        <div className='mb-12 flex flex-wrap justify-center gap-3'>
+          {categories.map(category => (
             <Button
               key={category.id}
-              variant={activeCategory === category.id ? "default" : "outline"}
+              variant={activeCategory === category.id ? 'default' : 'outline'}
               onClick={() => setActiveCategory(category.id)}
               className={`flex items-center gap-2 ${
                 activeCategory === category.id
-                  ? "bg-blue-600 text-white"
-                  : "text-zinc-700 hover:text-zinc-900 border-zinc-300"
+                  ? 'bg-blue-600 text-white'
+                  : 'border-zinc-300 text-zinc-700 hover:text-zinc-900'
               }`}
             >
-              <category.icon className="h-4 w-4" />
+              <category.icon className='h-4 w-4' />
               {category.title}
             </Button>
           ))}
         </div>
 
         {/* Examples Grid */}
-        <div className="space-y-8">
+        <div className='space-y-8'>
           {getCurrentExamples().map((example, index) => (
-            <Card key={index} className="bg-white/80 backdrop-blur-sm border-zinc-200/50 hover:shadow-lg transition-all duration-300">
+            <Card
+              key={index}
+              className='border-zinc-200/50 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:shadow-lg'
+            >
               <CardHeader>
-                <div className="flex items-start justify-between">
+                <div className='flex items-start justify-between'>
                   <div>
-                    <CardTitle className="text-2xl font-bold text-zinc-900 mb-2">
+                    <CardTitle className='mb-2 text-2xl font-bold text-zinc-900'>
                       {example.title}
                     </CardTitle>
-                    <CardDescription className="text-lg text-zinc-600 leading-relaxed">
+                    <CardDescription className='text-lg leading-relaxed text-zinc-600'>
                       {example.description}
                     </CardDescription>
                   </div>
-                  <Badge 
-                    variant="outline" 
+                  <Badge
+                    variant='outline'
                     className={`${
-                      example.difficulty === 'Beginner' ? 'border-green-300 text-green-700' :
-                      example.difficulty === 'Intermediate' ? 'border-yellow-300 text-yellow-700' :
-                      'border-red-300 text-red-700'
+                      example.difficulty === 'Beginner'
+                        ? 'border-green-300 text-green-700'
+                        : example.difficulty === 'Intermediate'
+                          ? 'border-yellow-300 text-yellow-700'
+                          : 'border-red-300 text-red-700'
                     }`}
                   >
                     {example.difficulty}
                   </Badge>
                 </div>
-                <div className="flex flex-wrap gap-2 mt-4">
+                <div className='mt-4 flex flex-wrap gap-2'>
                   {example.files.map((file, fileIndex) => (
-                    <Badge key={fileIndex} variant="secondary" className="text-xs">
+                    <Badge key={fileIndex} variant='secondary' className='text-xs'>
                       {file}
                     </Badge>
                   ))}
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="bg-zinc-900 rounded-xl p-6 relative">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-red-400" />
-                      <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                      <div className="w-3 h-3 rounded-full bg-green-400" />
-                      <span className="ml-2 text-sm text-zinc-400 font-mono">
+                <div className='relative rounded-xl bg-zinc-900 p-6'>
+                  <div className='mb-4 flex items-center justify-between'>
+                    <div className='flex items-center gap-2'>
+                      <div className='h-3 w-3 rounded-full bg-red-400' />
+                      <div className='h-3 w-3 rounded-full bg-yellow-400' />
+                      <div className='h-3 w-3 rounded-full bg-green-400' />
+                      <span className='ml-2 font-mono text-sm text-zinc-400'>
                         {example.files[0]}
                       </span>
                     </div>
-                    <div className="flex gap-2">
+                    <div className='flex gap-2'>
                       <Button
-                        size="sm"
-                        variant="ghost"
+                        size='sm'
+                        variant='ghost'
                         onClick={() => copyCode(example.code, `example-${index}`)}
-                        className="text-zinc-400 hover:text-white hover:bg-zinc-800"
+                        className='text-zinc-400 hover:bg-zinc-800 hover:text-white'
                       >
-                        {copiedCode === `example-${index}` ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                        {copiedCode === `example-${index}` ? (
+                          <Check className='h-4 w-4' />
+                        ) : (
+                          <Copy className='h-4 w-4' />
+                        )}
                       </Button>
                       <Button
-                        size="sm"
-                        variant="ghost"
-                        className="text-zinc-400 hover:text-white hover:bg-zinc-800"
+                        size='sm'
+                        variant='ghost'
+                        className='text-zinc-400 hover:bg-zinc-800 hover:text-white'
                       >
-                        <Download className="h-4 w-4" />
+                        <Download className='h-4 w-4' />
                       </Button>
                     </div>
                   </div>
-                  <pre className="text-sm text-zinc-300 font-mono leading-relaxed overflow-x-auto max-h-96">
+                  <pre className='max-h-96 overflow-x-auto font-mono text-sm leading-relaxed text-zinc-300'>
                     {example.code}
                   </pre>
                 </div>
-                <div className="flex gap-3 mt-6">
-                  <Button variant="outline" size="sm" className="text-zinc-700 border-zinc-300">
-                    <Play className="h-4 w-4 mr-2" />
+                <div className='mt-6 flex gap-3'>
+                  <Button variant='outline' size='sm' className='border-zinc-300 text-zinc-700'>
+                    <Play className='mr-2 h-4 w-4' />
                     Run Example
                   </Button>
-                  <Button variant="outline" size="sm" className="text-zinc-700 border-zinc-300">
-                    <ExternalLink className="h-4 w-4 mr-2" />
+                  <Button variant='outline' size='sm' className='border-zinc-300 text-zinc-700'>
+                    <ExternalLink className='mr-2 h-4 w-4' />
                     View on GitHub
                   </Button>
                 </div>
@@ -765,24 +777,24 @@ fi`,
         </div>
 
         {/* Call to Action */}
-        <div className="mt-20 text-center">
-          <Card className="bg-blue-50/50 border-blue-200/50 max-w-2xl mx-auto">
-            <CardContent className="pt-8">
-              <h3 className="text-2xl font-bold text-zinc-900 mb-4">
+        <div className='mt-20 text-center'>
+          <Card className='mx-auto max-w-2xl border-blue-200/50 bg-blue-50/50'>
+            <CardContent className='pt-8'>
+              <h3 className='mb-4 text-2xl font-bold text-zinc-900'>
                 Need Help with Your Project?
               </h3>
-              <p className="text-zinc-600 mb-6 leading-relaxed">
-                Can&apos;t find what you&apos;re looking for? Ask the Sui Developer MCP directly in your IDE 
-                for personalized code examples and guidance.
+              <p className='mb-6 leading-relaxed text-zinc-600'>
+                Can&apos;t find what you&apos;re looking for? Ask the Sui Developer MCP directly in
+                your IDE for personalized code examples and guidance.
               </p>
-              <div className="flex gap-3 justify-center">
-                <Link href="/docs">
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+              <div className='flex justify-center gap-3'>
+                <Link href='/docs'>
+                  <Button className='bg-blue-600 text-white hover:bg-blue-700'>
                     Read Documentation
                   </Button>
                 </Link>
-                <Link href="/">
-                  <Button variant="outline" className="text-zinc-700 border-zinc-300">
+                <Link href='/'>
+                  <Button variant='outline' className='border-zinc-300 text-zinc-700'>
                     Get Started
                   </Button>
                 </Link>
@@ -793,4 +805,4 @@ fi`,
       </div>
     </div>
   )
-} 
+}
