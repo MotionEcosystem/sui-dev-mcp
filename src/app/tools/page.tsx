@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { ThemeToggle } from "@/components/theme-toggle"
 import {
   Code2,
   Search,
@@ -400,6 +401,7 @@ defi_protocol/
             <div className="flex items-center gap-2">
               <Wrench className="h-5 w-5 text-blue-600" />
               <span className="font-bold text-zinc-900">MCP Tools</span>
+              <ThemeToggle />
             </div>
           </div>
         </div>

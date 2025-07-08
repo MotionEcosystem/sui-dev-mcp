@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { ThemeToggle } from "@/components/theme-toggle"
 import {
   Code2,
   Copy,
@@ -646,6 +647,7 @@ fi`,
               <Code2 className="h-5 w-5 text-blue-600" />
               <span className="font-bold text-zinc-900">Examples & Tutorials</span>
             </div>
+            <ThemeToggle />
           </div>
         </div>
       </header>
