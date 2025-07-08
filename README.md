@@ -107,28 +107,7 @@ Add to your Claude Desktop configuration:
 | `npm run lint`       | Run ESLint                   |
 | `npm run lint:fix`   | Fix ESLint issues            |
 | `npm run type-check` | Run TypeScript type checking |
-| `npm run test`       | Run unit tests               |
-| `npm run test:e2e`   | Run E2E tests                |
 | `npm run format`     | Format code with Prettier    |
-
-### Project Structure
-
-```
-sui-dev-mcp/
-├── .github/workflows/     # GitHub Actions CI/CD
-├── .husky/               # Git hooks
-├── .vscode/              # VS Code settings
-├── public/               # Static assets
-│   └── motion/           # Motion Labs branding
-├── src/
-│   ├── app/              # Next.js app directory
-│   ├── components/       # React components
-│   └── lib/              # Utilities
-├── tests/
-│   ├── e2e/              # Playwright E2E tests
-│   └── unit/             # Jest unit tests
-└── docs/                 # Documentation
-```
 
 ### Tech Stack
 
