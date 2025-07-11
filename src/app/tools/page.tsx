@@ -15,10 +15,10 @@ import {
   Eye,
   GitBranch,
   Play,
-  Search,
+  Shield,
   Terminal,
   Wrench,
-  Zap,
+  Zap
 } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -28,8 +28,107 @@ export default function ToolsPage() {
 
   const tools = [
     {
-      id: 'sui-docs-search',
-      name: 'Documentation Search',
+      id: 'ask-sui-move-expert',
+      name: 'Ask Sui Move Expert',
+      icon: Bot,
+      category: 'AI Expert',
+      description:
+        'Expert AI assistant specialized in Sui Move smart contract development, patterns, and best practices',
+      features: [
+        'Move language expertise',
+        'Smart contract architecture guidance',
+        'Code review and optimization',
+        'Pattern recognition and suggestions',
+        'Advanced Move concepts explanation',
+      ],
+      useCases: [
+        'Smart contract development',
+        'Move language learning',
+        'Architecture planning',
+        'Code optimization',
+      ],
+      example: {
+        query: 'How do I implement a staking mechanism with time-locked rewards?',
+        response: `🚀 **Sui Move Staking Implementation:**
+
+\`\`\`move
+module staking::rewards {
+    use sui::clock::{Self, Clock};
+    use sui::coin::{Self, Coin};
+    use sui::object::{Self, UID};
+    use sui::transfer;
+    use sui::tx_context::{Self, TxContext};
+
+    struct StakingPool<phantom T> has key {
+        id: UID,
+        total_staked: u64,
+        reward_rate: u64, // rewards per second
+        last_update: u64,
+        reward_per_token: u64,
+    }
+
+    struct StakePosition<phantom T> has key {
+        id: UID,
+        amount: u64,
+        stake_time: u64,
+        lock_duration: u64,
+        user_reward_per_token: u64,
+        pending_rewards: u64,
+    }
+
+    public entry fun stake<T>(
+        pool: &mut StakingPool<T>,
+        stake_coin: Coin<T>,
+        lock_duration: u64,
+        clock: &Clock,
+        ctx: &mut TxContext
+    ) {
+        let amount = coin::value(&stake_coin);
+        let current_time = clock::timestamp_ms(clock);
+
+        // Update pool rewards
+        update_rewards(pool, clock);
+
+        let position = StakePosition<T> {
+            id: object::new(ctx),
+            amount,
+            stake_time: current_time,
+            lock_duration,
+            user_reward_per_token: pool.reward_per_token,
+            pending_rewards: 0,
+        };
+
+        pool.total_staked = pool.total_staked + amount;
+
+        // Transfer stake coin to pool (implement treasury logic)
+        coin::destroy_zero(stake_coin); // Simplified
+
+        transfer::transfer(position, tx_context::sender(ctx));
+    }
+
+    fun update_rewards<T>(pool: &mut StakingPool<T>, clock: &Clock) {
+        let current_time = clock::timestamp_ms(clock);
+        if (pool.total_staked > 0) {
+            let time_diff = current_time - pool.last_update;
+            let rewards = (time_diff * pool.reward_rate) / 1000; // Convert to seconds
+            pool.reward_per_token = pool.reward_per_token +
+                (rewards * 1000000) / pool.total_staked; // Scale for precision
+        };
+        pool.last_update = current_time;
+    }
+}
+\`\`\`
+
+**🔑 Key Features:**
+- Time-locked positions prevent early withdrawal
+- Rewards accumulate based on staking duration
+- Efficient reward calculation using per-token tracking
+- Clock-based timestamp validation`,
+      },
+    },
+    {
+      id: 'sui-documentation-search',
+      name: 'Sui Documentation Search',
       icon: BookOpen,
       category: 'Research',
       description:
@@ -48,160 +147,152 @@ export default function ToolsPage() {
         'Get transaction examples',
       ],
       example: {
-        query: 'How to create shared objects in Sui?',
-        response: `Found 3 relevant documentation sections:
+        query: 'Find information about dynamic fields and object composition',
+        response: `📚 **Dynamic Fields & Object Composition Documentation:**
 
-1. **Shared Objects Overview** (sui.io/concepts/object-ownership)
-   - Shared objects can be accessed by anyone
-   - Created using transfer::share_object()
-   - Mutable by multiple transactions
+**🔍 Dynamic Fields Overview:**
+- **Location:** sui.io/concepts/dynamic-fields
+- Dynamic fields allow objects to be extended with additional data
+- Fields are stored separately but accessible through the parent object
+- Useful for scalable data structures and upgradeable contracts
 
-2. **Code Example:**
-   \`\`\`move
-   struct SharedCounter has key {
-       id: UID,
-       value: u64,
-   }
+**💻 Code Example:**
+\`\`\`move
+use sui::dynamic_field as df;
 
-   public entry fun create_counter(ctx: &mut TxContext) {
-       let counter = SharedCounter {
-           id: object::new(ctx),
-           value: 0,
-       };
-       transfer::share_object(counter);
-   }
-   \`\`\`
+struct Parent has key {
+    id: UID,
+}
 
-3. **Best Practices:**
-   - Use shared objects for global state
-   - Consider gas costs for concurrent access
-   - Implement proper access controls`,
+struct Child has store {
+    value: u64,
+}
+
+// Add a dynamic field
+public fun add_child(parent: &mut Parent, name: String, child: Child) {
+    df::add(&mut parent.id, name, child);
+}
+
+// Access a dynamic field
+public fun get_child(parent: &Parent, name: String): &Child {
+    df::borrow(&parent.id, name)
+}
+\`\`\`
+
+**🏗️ Object Composition Patterns:**
+1. **Hierarchical Objects:** Parent-child relationships
+2. **Modular Design:** Separate concerns into different objects
+3. **Extensible Structures:** Use dynamic fields for flexibility
+4. **Capability-based Access:** Control field modifications
+
+**⚠️ Best Practices:**
+- Use typed keys for better type safety
+- Consider gas costs for deep nesting
+- Implement proper access controls
+- Plan for field removal and cleanup`,
       },
     },
     {
-      id: 'move-analyzer',
-      name: 'Move Code Analyzer',
+      id: 'ask-sui-sdk-expert',
+      name: 'Ask Sui SDK Expert',
       icon: Code2,
       category: 'Development',
-      description:
-        'Advanced static analysis for Move smart contracts with security and optimization suggestions',
+      description: 'Expert guidance for Sui TypeScript/JavaScript SDK integration and usage',
       features: [
-        'Security vulnerability detection',
-        'Gas optimization analysis',
-        'Code pattern recognition',
-        'Best practices enforcement',
-        'Dependency analysis',
-      ],
-      useCases: [
-        'Security audit preparation',
-        'Performance optimization',
-        'Code quality improvement',
-        'Pre-deployment validation',
-      ],
-      example: {
-        query: 'Analyze this NFT contract for issues',
-        response: `🔍 **Analysis Results:**
-
-**✅ Security Issues Found:**
-- Line 23: Missing access control in mint function
-- Line 45: Potential integer overflow in supply calculation
-
-**⚡ Gas Optimizations:**
-- Line 12: Use \`vector::length\` instead of counter
-- Line 67: Cache object field access
-
-**📋 Best Practices:**
-- Consider using events for mint operations
-- Add proper error codes for assertions
-- Implement royalty standards
-
-**📊 Overall Score: 8.2/10**
-- Security: Good (minor issues)
-- Gas Efficiency: Very Good
-- Code Quality: Excellent`,
-      },
-    },
-    {
-      id: 'sdk-helper',
-      name: 'SDK Integration Helper',
-      icon: Wrench,
-      category: 'Integration',
-      description: 'Generate TypeScript and Rust SDK code for interacting with your Move modules',
-      features: [
-        'TypeScript SDK generation',
-        'Rust SDK examples',
-        'Transaction building helpers',
-        'Type-safe interfaces',
+        'TypeScript SDK expertise',
+        'Transaction building guidance',
+        'Client configuration help',
+        'Best practices for dApp integration',
         'Error handling patterns',
       ],
       useCases: [
-        'Frontend dApp integration',
-        'Backend service integration',
-        'CLI tool development',
-        'Testing framework setup',
+        'Frontend dApp development',
+        'Transaction construction',
+        'Wallet integration',
+        'RPC client setup',
       ],
       example: {
-        query: 'Generate TypeScript code to mint an NFT',
-        response: `🚀 **Generated TypeScript Code:**
+        query: 'Show me how to create and sign a programmable transaction in TypeScript',
+        response: `🔧 **Programmable Transaction in TypeScript:**
 
 \`\`\`typescript
 import { SuiClient, getFullnodeUrl } from '@mysten/sui.js/client';
 import { TransactionBlock } from '@mysten/sui.js/transactions';
+import { Ed25519Keypair } from '@mysten/sui.js/keypairs/ed25519';
 
-export async function mintNFT(
-  client: SuiClient,
-  packageId: string,
-  collectionId: string,
-  name: string,
-  description: string,
-  imageUrl: string,
-  recipient: string,
-  signer: any
-) {
+// Initialize client and keypair
+const client = new SuiClient({
+  url: getFullnodeUrl('testnet')
+});
+const keypair = Ed25519Keypair.generate();
+
+async function createProgrammableTransaction() {
+  // Create a new transaction block
   const txb = new TransactionBlock();
 
+  // Example: Multi-step transaction
+  // Step 1: Split coins
+  const [coin1, coin2] = txb.splitCoins(txb.gas, [
+    txb.pure(1000000000), // 1 SUI
+    txb.pure(500000000),  // 0.5 SUI
+  ]);
+
+  // Step 2: Transfer coins to different recipients
+  txb.transferObjects([coin1], txb.pure('0x...recipient1'));
+  txb.transferObjects([coin2], txb.pure('0x...recipient2'));
+
+  // Step 3: Call a Move function
   txb.moveCall({
-    target: \`\${packageId}::nft::mint\`,
+    target: '0x...package::module::function',
     arguments: [
-      txb.object(collectionId),
-      txb.pure(name),
-      txb.pure(description),
-      txb.pure(imageUrl),
-      txb.pure(recipient),
+      txb.object('0x...shared_object'),
+      txb.pure('some_parameter'),
     ],
+    typeArguments: ['0x2::sui::SUI'],
   });
 
+  // Set gas budget
+  txb.setGasBudget(10000000);
+
+  // Sign and execute
   const result = await client.signAndExecuteTransactionBlock({
-    signer,
+    signer: keypair,
     transactionBlock: txb,
     options: {
       showEffects: true,
       showObjectChanges: true,
+      showEvents: true,
     },
   });
 
+  console.log('Transaction result:', result);
   return result;
+}
+
+// Error handling wrapper
+async function executeWithRetry() {
+  try {
+    return await createProgrammableTransaction();
+  } catch (error) {
+    if (error.message.includes('InsufficientGas')) {
+      console.log('Retrying with higher gas budget...');
+      // Implement retry logic
+    }
+    throw error;
+  }
 }
 \`\`\`
 
-**Usage Example:**
-\`\`\`typescript
-const result = await mintNFT(
-  client,
-  '0x123...',
-  '0x456...',
-  'My NFT',
-  'A beautiful NFT',
-  'https://example.com/image.png',
-  '0x789...',
-  keypair
-);
-\`\`\``,
+**🎯 Key Features:**
+- **Batch Operations:** Multiple actions in one transaction
+- **Gas Optimization:** Single transaction reduces costs
+- **Atomic Execution:** All operations succeed or fail together
+- **Type Safety:** Full TypeScript support`,
       },
     },
     {
-      id: 'error-decoder',
-      name: 'Error Decoder',
+      id: 'sui-error-explainer',
+      name: 'Sui Error Explainer',
       icon: AlertCircle,
       category: 'Debugging',
       description: 'Decode and explain Sui transaction errors with actionable solutions',
@@ -219,161 +310,229 @@ const result = await mintNFT(
         'Error monitoring',
       ],
       example: {
-        query: 'Decode error: InsufficientGas with code 65537',
-        response: `🚨 **Error Analysis:**
+        query: "Explain 'InvalidObjectOwner' error and how to fix it",
+        response: `🚨 **InvalidObjectOwner Error Analysis:**
 
-**Error Type:** InsufficientGas (Code: 65537)
+**🔍 Error Explanation:**
+The \`InvalidObjectOwner\` error occurs when a transaction tries to use an object that:
+- Doesn't exist at the specified address
+- Is owned by a different address than expected
+- Has been consumed/deleted in a previous transaction
+- Has incorrect ownership type (owned vs shared vs immutable)
 
-**🔍 Root Cause:**
-Your transaction requires more gas than the budget you specified. This commonly happens when:
-- Complex computation in Move functions
-- Large object operations
-- Multiple function calls in one transaction
+**💡 Common Causes:**
 
-**💡 Solutions:**
-1. **Increase Gas Budget:**
+1. **Stale Object References:**
    \`\`\`typescript
+   // ❌ Problem: Using old object reference
    const txb = new TransactionBlock();
-   txb.setGasBudget(10000000); // Increase from default
-   \`\`\`
-
-2. **Optimize Move Code:**
-   - Reduce vector operations
-   - Cache repeated calculations
-   - Split complex operations
-
-3. **Check Gas Estimation:**
-   \`\`\`typescript
-   const dryRun = await client.dryRunTransactionBlock({
-     transactionBlock: txb
+   txb.moveCall({
+     target: 'package::module::transfer',
+     arguments: [txb.object('0x123...')], // Object may be consumed
    });
-   console.log('Estimated gas:', dryRun.effects.gasUsed);
    \`\`\`
 
-**📊 Typical Gas Costs:**
-- Simple transfer: ~1M gas units
-- NFT mint: ~5M gas units
-- Complex DeFi operations: ~10M+ gas units`,
+2. **Ownership Confusion:**
+   \`\`\`move
+   // ❌ Problem: Trying to mutate owned object as shared
+   public entry fun wrong_function(obj: &mut MyObject) {
+     // This expects a shared object but receives owned
+   }
+   \`\`\`
+
+**🛠️ Solutions:**
+
+1. **Refresh Object Data:**
+   \`\`\`typescript
+   // ✅ Solution: Get fresh object data
+   const object = await client.getObject({
+     id: objectId,
+     options: { showOwner: true, showContent: true }
+   });
+
+   if (object.data?.owner?.AddressOwner) {
+     // Use the fresh object reference
+     txb.transferObjects([txb.object(objectId)], recipient);
+   }
+   \`\`\`
+
+2. **Check Ownership Type:**
+   \`\`\`typescript
+   // ✅ Solution: Verify ownership before use
+   const objectInfo = await client.getObject({ id: objectId });
+   const owner = objectInfo.data?.owner;
+
+   if (owner === 'Shared') {
+     // Handle as shared object
+   } else if (owner?.AddressOwner) {
+     // Handle as owned object
+   }
+   \`\`\`
+
+3. **Use Dynamic Object Queries:**
+   \`\`\`typescript
+   // ✅ Solution: Query owned objects dynamically
+   const ownedObjects = await client.getOwnedObjects({
+     owner: address,
+     filter: { StructType: 'package::module::MyObject' }
+   });
+   \`\`\`
+
+**🔧 Debug Checklist:**
+- ✅ Verify object exists at given address
+- ✅ Check current ownership status
+- ✅ Ensure object hasn't been consumed
+- ✅ Validate ownership type matches usage
+- ✅ Refresh object references before transactions`,
       },
     },
     {
-      id: 'ecosystem-search',
-      name: 'Ecosystem Documentation',
-      icon: Search,
-      category: 'Research',
-      description:
-        'Search across the entire Sui ecosystem documentation including major protocols and tools',
+      id: 'sui-best-practices-guide',
+      name: 'Sui Best Practices Guide',
+      icon: Shield,
+      category: 'Security',
+      description: 'Security best practices and optimization guidelines for Sui development',
       features: [
-        'Multi-protocol search',
-        'Real-time ecosystem updates',
-        'Integration examples',
-        'Protocol comparisons',
-        'API cross-references',
+        'Security audit guidance',
+        'Gas optimization techniques',
+        'Architecture recommendations',
+        'Testing strategies',
+        'Deployment best practices',
       ],
       useCases: [
-        'Research DeFi protocols',
-        'Find integration patterns',
-        'Compare implementations',
-        'Discover new tools',
-      ],
-      example: {
-        query: 'How to integrate with Sui DEXs?',
-        response: `🔍 **Ecosystem Search Results:**
-
-**1. Cetus Protocol** (CLMM DEX)
-- TypeScript SDK: @cetusprotocol/sui-sdk
-- Swap integration: CetusClmm.swap()
-- Pool creation: Concentrated liquidity pools
-
-**2. Turbos Finance**
-- AMM-style pools
-- SDK: @turbos-finance/sui-sdk
-- Multi-hop routing support
-
-**3. Deepbook** (Order Book DEX)
-- Native order book on Sui
-- Professional trading features
-- Integration: deepbook package
-
-**🛠️ Integration Example:**
-\`\`\`typescript
-// Cetus swap example
-import { CetusClmm } from '@cetusprotocol/sui-sdk';
-
-const cetus = new CetusClmm(client);
-const swapResult = await cetus.swap({
-  poolAddress: '0x...',
-  tokenIn: 'SUI',
-  tokenOut: 'USDC',
-  amountIn: '1000000000',
-  slippage: 0.005
-});
-\`\`\``,
-      },
-    },
-    {
-      id: 'ai-assistant',
-      name: 'AI Development Assistant',
-      icon: Bot,
-      category: 'AI',
-      description: 'Conversational AI assistant for Sui development questions and code generation',
-      features: [
-        'Natural language queries',
-        'Code generation',
-        'Architecture advice',
-        'Best practices guidance',
-        'Learning assistance',
-      ],
-      useCases: [
-        'Learning Sui development',
+        'Security reviews',
+        'Performance optimization',
         'Architecture planning',
-        'Code review assistance',
-        'Quick problem solving',
+        'Protocol development',
       ],
       example: {
-        query: 'How should I structure a multi-module DeFi project?',
-        response: `🏗️ **DeFi Project Structure Recommendation:**
+        query: 'What are security best practices for DeFi protocols on Sui?',
+        response: `🛡️ **DeFi Security Best Practices on Sui:**
 
-**📁 Project Layout:**
-\`\`\`
-defi_protocol/
-├── sources/
-│   ├── core/
-│   │   ├── math.move          # Mathematical utilities
-│   │   └── events.move        # Protocol events
-│   ├── pools/
-│   │   ├── pool.move          # Core pool logic
-│   │   └── factory.move       # Pool creation
-│   ├── tokens/
-│   │   └── lp_coin.move       # LP token implementation
-│   └── governance/
-│       ├── dao.move           # Governance module
-│       └── voting.move        # Voting mechanisms
-├── tests/
-└── scripts/
-\`\`\`
+**🔐 Core Security Principles:**
 
-**🎯 Key Principles:**
-1. **Separation of Concerns:** Each module handles specific functionality
-2. **Shared Utilities:** Common math and validation in core modules
-3. **Upgradability:** Consider upgrade patterns early
-4. **Testing:** Comprehensive test coverage for each module
+1. **Capability-Based Access Control:**
+   \`\`\`move
+   struct AdminCap has key, store { id: UID }
 
-**🔗 Module Dependencies:**
-- Pool module depends on math utilities
-- Factory creates and manages pools
-- Governance modules are separate for security
+   public entry fun admin_function(
+       _: &AdminCap,
+       protocol: &mut Protocol,
+       ctx: &mut TxContext
+   ) {
+       // Only admin can execute
+   }
+   \`\`\`
 
-**💡 Best Practices:**
-- Use capability patterns for admin functions
-- Implement proper access controls
-- Consider gas optimization from the start
-- Plan for multi-sig governance`,
+2. **Input Validation:**
+   \`\`\`move
+   public fun swap(
+       pool: &mut Pool<X, Y>,
+       input_coin: Coin<X>,
+       min_output: u64,
+   ): Coin<Y> {
+       let input_amount = coin::value(&input_coin);
+       assert!(input_amount > 0, EInvalidAmount);
+
+       let output_amount = calculate_output(pool, input_amount);
+       assert!(output_amount >= min_output, ESlippageTooHigh);
+
+       // Execute swap...
+   }
+   \`\`\`
+
+**💰 Economic Security:**
+
+1. **Slippage Protection:**
+   - Always implement minimum output checks
+   - Use deadline parameters for time-sensitive operations
+   - Protect against sandwich attacks
+
+2. **Oracle Security:**
+   \`\`\`move
+   public fun get_price_with_validation(
+       oracle: &PriceOracle,
+       max_age: u64,
+       clock: &Clock
+   ): u64 {
+       let (price, timestamp) = oracle::get_price_data(oracle);
+       let current_time = clock::timestamp_ms(clock);
+
+       assert!(current_time - timestamp <= max_age, EPriceStale);
+       assert!(price > 0, EInvalidPrice);
+
+       price
+   }
+   \`\`\`
+
+**🏗️ Architecture Security:**
+
+1. **Module Separation:**
+   - Core logic in separate modules
+   - Admin functions isolated
+   - Clear dependency hierarchy
+
+2. **Upgrade Patterns:**
+   \`\`\`move
+   struct UpgradeCap has key, store { id: UID }
+
+   public entry fun authorize_upgrade(
+       _: &UpgradeCap,
+       policy: &mut UpgradePolicy,
+       new_package: vector<u8>
+   ) {
+       // Implement time-delayed upgrades
+       // Multi-sig requirements
+       // Emergency pause mechanisms
+   }
+   \`\`\`
+
+**🧪 Testing & Validation:**
+
+1. **Comprehensive Test Coverage:**
+   - Unit tests for all functions
+   - Integration tests for workflows
+   - Stress tests for edge cases
+   - Fuzzing for input validation
+
+2. **Formal Verification:**
+   - Use Move's built-in verification
+   - Property-based testing
+   - Invariant checking
+
+**⚡ Gas Optimization:**
+
+1. **Efficient Data Structures:**
+   \`\`\`move
+   // ✅ Good: Use appropriate types
+   struct OptimizedPool {
+       reserves_x: u128, // Sufficient precision
+       reserves_y: u128,
+       fee_rate: u64,    // Smaller type for fee
+   }
+
+   // ❌ Avoid: Oversized types
+   struct WastefulPool {
+       reserves_x: u256, // Unnecessary precision
+       reserves_y: u256,
+   }
+   \`\`\`
+
+2. **Batch Operations:**
+   - Group related operations
+   - Minimize object transfers
+   - Use shared objects efficiently
+
+**🚨 Emergency Procedures:**
+- Implement pause mechanisms
+- Multi-sig governance
+- Time-locked critical operations
+- Emergency withdrawal functions`,
       },
     },
   ]
 
-  const categories = ['All', 'Research', 'Development', 'Integration', 'Debugging', 'AI']
+  const categories = ['All', 'AI Expert', 'Research', 'Development', 'Debugging', 'Security']
 
   const [activeCategory, setActiveCategory] = useState('All')
 
@@ -405,7 +564,7 @@ defi_protocol/
             </div>
             <div className='flex items-center gap-2'>
               <Wrench className='h-5 w-5 text-blue-600' />
-              <span className='font-bold text-zinc-900'>MCP Tools</span>
+              <span className='font-bold text-zinc-900'>Sui Developer MCP</span>
               <ThemeToggle />
             </div>
           </div>
@@ -416,13 +575,27 @@ defi_protocol/
         {/* Hero Section */}
         <div className='mb-16 text-center'>
           <h1 className='mb-6 text-5xl font-black tracking-tight text-zinc-900'>
-            MCP Development Tools
+            Sui Developer MCP Tools
           </h1>
           <p className='mx-auto max-w-3xl text-xl leading-relaxed text-zinc-600'>
-            Powerful AI-driven tools that integrate directly into your IDE to accelerate Sui
-            development. Each tool is designed to solve specific challenges in the blockchain
-            development workflow.
+            AI-powered tools that integrate directly into your IDE to accelerate Sui development.
+            Access expert knowledge, documentation search, SDK guidance, and debugging help through
+            the Model Context Protocol.
           </p>
+          <div className='mt-8 flex justify-center gap-3'>
+            <Link href='/docs'>
+              <Button className='bg-blue-600 text-white hover:bg-blue-700'>
+                <BookOpen className='mr-2 h-4 w-4' />
+                Setup Guide
+              </Button>
+            </Link>
+            <Link href='https://sui-developer-mcp.vercel.app/mcp' target='_blank'>
+              <Button variant='outline' className='border-blue-600 text-blue-600 hover:bg-blue-50'>
+                <Terminal className='mr-2 h-4 w-4' />
+                MCP Server
+              </Button>
+            </Link>
+          </div>
         </div>
 
         {/* Category Filter */}
@@ -541,7 +714,7 @@ defi_protocol/
               How to Use These Tools
             </CardTitle>
             <CardDescription className='text-lg text-zinc-700'>
-              Get started with MCP tools in your development environment
+              Get started with Sui Developer MCP in your development environment
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -552,7 +725,7 @@ defi_protocol/
                 </div>
                 <h3 className='mb-2 font-semibold text-zinc-900'>Install MCP Server</h3>
                 <p className='text-sm text-zinc-600'>
-                  Set up the Sui Developer MCP server in your IDE following our installation guide
+                  Configure the Sui Developer MCP server in Claude Desktop, Cursor, or Windsurf
                 </p>
               </div>
               <div className='text-center'>
@@ -561,17 +734,16 @@ defi_protocol/
                 </div>
                 <h3 className='mb-2 font-semibold text-zinc-900'>Ask Questions</h3>
                 <p className='text-sm text-zinc-600'>
-                  Use natural language to ask questions and request code examples directly in your
-                  IDE
+                  Use natural language to ask Sui development questions directly in your IDE
                 </p>
               </div>
               <div className='text-center'>
                 <div className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 font-bold text-white'>
                   3
                 </div>
-                <h3 className='mb-2 font-semibold text-zinc-900'>Get AI Assistance</h3>
+                <h3 className='mb-2 font-semibold text-zinc-900'>Get Expert Help</h3>
                 <p className='text-sm text-zinc-600'>
-                  Receive intelligent responses with code, documentation, and best practices
+                  Receive specialized Sui knowledge, code examples, and debugging assistance
                 </p>
               </div>
             </div>
@@ -583,29 +755,29 @@ defi_protocol/
           <Card className='border-zinc-200/50 bg-white/80 text-center backdrop-blur-sm'>
             <CardContent className='pt-6'>
               <Database className='mx-auto mb-4 h-8 w-8 text-blue-600' />
-              <div className='mb-2 text-2xl font-bold text-zinc-900'>10M+</div>
-              <p className='text-sm text-zinc-600'>Documentation entries indexed</p>
+              <div className='mb-2 text-2xl font-bold text-zinc-900'>5+</div>
+              <p className='text-sm text-zinc-600'>Specialized AI tools</p>
             </CardContent>
           </Card>
           <Card className='border-zinc-200/50 bg-white/80 text-center backdrop-blur-sm'>
             <CardContent className='pt-6'>
               <Cpu className='mx-auto mb-4 h-8 w-8 text-blue-600' />
-              <div className='mb-2 text-2xl font-bold text-zinc-900'>&lt;100ms</div>
+              <div className='mb-2 text-2xl font-bold text-zinc-900'>&lt;2s</div>
               <p className='text-sm text-zinc-600'>Average response time</p>
             </CardContent>
           </Card>
           <Card className='border-zinc-200/50 bg-white/80 text-center backdrop-blur-sm'>
             <CardContent className='pt-6'>
               <Eye className='mx-auto mb-4 h-8 w-8 text-blue-600' />
-              <div className='mb-2 text-2xl font-bold text-zinc-900'>95%</div>
-              <p className='text-sm text-zinc-600'>Code analysis accuracy</p>
+              <div className='mb-2 text-2xl font-bold text-zinc-900'>3</div>
+              <p className='text-sm text-zinc-600'>Supported IDEs</p>
             </CardContent>
           </Card>
           <Card className='border-zinc-200/50 bg-white/80 text-center backdrop-blur-sm'>
             <CardContent className='pt-6'>
               <GitBranch className='mx-auto mb-4 h-8 w-8 text-blue-600' />
-              <div className='mb-2 text-2xl font-bold text-zinc-900'>50+</div>
-              <p className='text-sm text-zinc-600'>Supported protocols</p>
+              <div className='mb-2 text-2xl font-bold text-zinc-900'>24/7</div>
+              <p className='text-sm text-zinc-600'>Available assistance</p>
             </CardContent>
           </Card>
         </div>
@@ -614,20 +786,24 @@ defi_protocol/
         <div className='text-center'>
           <Card className='mx-auto max-w-2xl bg-zinc-900 text-white'>
             <CardContent className='pt-8'>
-              <h3 className='mb-4 text-2xl font-bold'>Ready to Accelerate Your Development?</h3>
+              <h3 className='mb-4 text-2xl font-bold'>Ready to Accelerate Your Sui Development?</h3>
               <p className='mb-6 leading-relaxed text-zinc-300'>
-                Install the Sui Developer MCP server and start building with AI-powered assistance
+                Install the Sui Developer MCP server and start building with specialized AI assistance
               </p>
               <div className='flex justify-center gap-3'>
                 <Link href='/docs'>
-                  <Button className='bg-white text-zinc-900 hover:bg-zinc-100'>Get Started</Button>
+                  <Button className='bg-white text-zinc-900 hover:bg-zinc-100'>
+                    <BookOpen className='mr-2 h-4 w-4' />
+                    Setup Guide
+                  </Button>
                 </Link>
-                <Link href='/examples'>
+                <Link href='https://sui-developer-mcp.vercel.app/mcp' target='_blank'>
                   <Button
                     variant='outline'
                     className='border-zinc-600 text-white hover:bg-zinc-800'
                   >
-                    View Examples
+                    <Terminal className='mr-2 h-4 w-4' />
+                    MCP Server
                   </Button>
                 </Link>
               </div>
