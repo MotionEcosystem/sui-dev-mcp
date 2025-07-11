@@ -129,7 +129,7 @@ export default function DocsPage() {
                 </div>
                 <h3 className='mb-2 font-semibold text-zinc-900'>Restart & Test</h3>
                 <p className='text-sm text-zinc-600'>
-                  Restart your IDE and ask: "What Sui tools are available?"
+                  Restart your IDE and ask: &quot;What Sui tools are available?&quot;
                 </p>
               </div>
             </div>
@@ -209,7 +209,7 @@ nano ~/.config/Claude/claude_desktop_config.json`}
                   </h3>
                   <div className="space-y-4">
                     <div>
-                      <h4 className="mb-2 font-medium text-zinc-800">If the file doesn't exist, create it with this content:</h4>
+                      <h4 className="mb-2 font-medium text-zinc-800">If the file doesn&apos;t exist, create it with this content:</h4>
                       <CodeBlock language="json" copyLabel="claude-new-config">
 {`{
   "mcpServers": {
@@ -316,9 +316,9 @@ Cmd/Ctrl + ,
                     Configure MCP
                   </h3>
                   <ol className="list-decimal list-inside space-y-2 text-sm text-zinc-700">
-                    <li>In Settings, go to <strong>"Features"</strong></li>
-                    <li>Find <strong>"Model Context Protocol"</strong></li>
-                    <li>Click <strong>"Edit in settings.json"</strong></li>
+                    <li>In Settings, go to <strong>&quot;Features&quot;</strong></li>
+                    <li>Find <strong>&quot;Model Context Protocol&quot;</strong></li>
+                    <li>Click <strong>&quot;Edit in settings.json&quot;</strong></li>
                   </ol>
                 </div>
 
@@ -389,7 +389,7 @@ pnpm add -g mcp-remote
                     <div>
                       <h4 className="mb-2 font-medium text-zinc-800">Method 1: Command Palette</h4>
                       <CodeBlock language="text" copyLabel="windsurf-command">
-Cmd/Ctrl + Shift + P → type "MCP"
+Cmd/Ctrl + Shift + P → type &quot;MCP&quot;
                       </CodeBlock>
                     </div>
                     <div>
@@ -455,7 +455,7 @@ pnpm add -g mcp-remote
               Available Tools
             </CardTitle>
             <CardDescription>
-              Once configured, you'll have access to these specialized Sui development tools
+              Once configured, you&apos;ll have access to these specialized Sui development tools
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -499,7 +499,7 @@ pnpm add -g mcp-remote
                 </h3>
                 <div className="rounded-lg border bg-zinc-50 p-3">
                   <code className="text-sm text-zinc-700">
-                    Explain 'InvalidObjectOwner' error and how to fix it
+                    Explain &apos;InvalidObjectOwner&apos; error and how to fix it
                   </code>
                 </div>
               </div>
@@ -532,7 +532,7 @@ pnpm add -g mcp-remote
           <CardContent>
             <div className="space-y-6">
               <div>
-                <h3 className="mb-3 font-semibold text-red-700">❌ "MCP server not found"</h3>
+                <h3 className="mb-3 font-semibold text-red-700">❌ &quot;MCP server not found&quot;</h3>
                 <ul className="list-disc list-inside space-y-1 text-sm text-zinc-700">
                   <li>✅ Install mcp-remote: <code className="rounded bg-zinc-100 px-1 text-xs">pnpm add -g mcp-remote</code></li>
                   <li>✅ Restart your IDE completely</li>
@@ -541,7 +541,7 @@ pnpm add -g mcp-remote
               </div>
 
               <div>
-                <h3 className="mb-3 font-semibold text-red-700">❌ "Connection failed"</h3>
+                <h3 className="mb-3 font-semibold text-red-700">❌ &quot;Connection failed&quot;</h3>
                 <ul className="list-disc list-inside space-y-1 text-sm text-zinc-700">
                   <li>✅ Verify internet connection</li>
                   <li>✅ Test server: <code className="rounded bg-zinc-100 px-1 text-xs">curl https://sui-developer-mcp.vercel.app/mcp</code></li>
@@ -550,10 +550,10 @@ pnpm add -g mcp-remote
               </div>
 
               <div>
-                <h3 className="mb-3 font-semibold text-red-700">❌ "No tools available"</h3>
+                <h3 className="mb-3 font-semibold text-red-700">❌ &quot;No tools available&quot;</h3>
                 <ul className="list-disc list-inside space-y-1 text-sm text-zinc-700">
                   <li>✅ Wait a few seconds after restart</li>
-                  <li>✅ Try asking: "What tools do you have available?"</li>
+                  <li>✅ Try asking: &quot;What tools do you have available?&quot;</li>
                   <li>✅ Verify the configuration JSON is properly formatted</li>
                 </ul>
               </div>
@@ -561,7 +561,7 @@ pnpm add -g mcp-remote
               <div className="rounded-lg border border-green-200 bg-green-50 p-4">
                 <h3 className="mb-3 font-semibold text-green-700">✅ Success Indicators:</h3>
                 <ul className="list-disc list-inside space-y-1 text-sm text-green-700">
-                  <li>AI mentions using "Sui Developer MCP" tools</li>
+                  <li>AI mentions using &quot;Sui Developer MCP&quot; tools</li>
                   <li>You get detailed Sui-specific responses</li>
                   <li>Code examples include Sui Move syntax</li>
                   <li>Error explanations are Sui-specific</li>
