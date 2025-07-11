@@ -594,14 +594,6 @@ export default function Home() {
                     href='#'
                     className='text-muted-foreground transition-colors hover:text-foreground'
                   >
-                    Support
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href='#'
-                    className='text-muted-foreground transition-colors hover:text-foreground'
-                  >
                     Status
                   </Link>
                 </li>
@@ -626,14 +618,6 @@ export default function Home() {
                     className='text-muted-foreground transition-colors hover:text-foreground'
                   >
                     About Motion Labs
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href='#'
-                    className='text-muted-foreground transition-colors hover:text-foreground'
-                  >
-                    Careers
                   </Link>
                 </li>
                 <li>

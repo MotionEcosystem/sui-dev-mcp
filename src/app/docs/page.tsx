@@ -652,7 +652,7 @@ pnpm add -g mcp-remote
                 <Link href='https://sui-developer-mcp.vercel.app/mcp' target='_blank'>
                   <Button
                     variant='outline'
-                    className='border-zinc-600 text-white hover:bg-zinc-800'
+                    className='border-zinc-600 text-black hover:bg-zinc-200'
                   >
                     <ExternalLink className='mr-2 h-4 w-4' />
                     MCP Server
