@@ -5,16 +5,16 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
-  AlertCircle,
-  ArrowLeft,
-  BookOpen,
-  CheckCircle,
-  Copy,
-  ExternalLink,
-  Monitor,
-  Terminal,
-  Wrench,
-  Zap
+    AlertCircle,
+    ArrowLeft,
+    BookOpen,
+    CheckCircle,
+    Copy,
+    ExternalLink,
+    Monitor,
+    Terminal,
+    Wrench,
+    Zap
 } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -91,21 +91,21 @@ export default function DocsPage() {
           <p className='mx-auto max-w-3xl text-xl leading-relaxed text-zinc-600'>
             Add the Sui Developer MCP server to your IDE in just a few steps. Support for Claude Desktop,
             Cursor, and Windsurf with detailed platform-specific instructions.
-          </p>
-        </div>
+                  </p>
+                </div>
 
         {/* Quick Start */}
         <Card className='mb-12 border-green-200/50 bg-gradient-to-r from-green-50 to-emerald-50'>
-          <CardHeader>
+                    <CardHeader>
             <CardTitle className='flex items-center gap-3 text-2xl font-bold text-zinc-900'>
               <Zap className='h-6 w-6 text-green-600' />
               Quick Start
-            </CardTitle>
+                      </CardTitle>
             <CardDescription className='text-lg text-zinc-700'>
               Get up and running in under 2 minutes
             </CardDescription>
-          </CardHeader>
-          <CardContent>
+                    </CardHeader>
+                    <CardContent>
             <div className='grid gap-4 md:grid-cols-3'>
               <div className='text-center'>
                 <div className='mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-green-600 font-bold text-white'>
@@ -126,15 +126,15 @@ export default function DocsPage() {
               <div className='text-center'>
                 <div className='mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-green-600 font-bold text-white'>
                   3
-                </div>
+                        </div>
                 <h3 className='mb-2 font-semibold text-zinc-900'>Restart & Test</h3>
                 <p className='text-sm text-zinc-600'>
                   Restart your IDE and ask: &quot;What Sui tools are available?&quot;
                 </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+                        </div>
+                        </div>
+                      </CardContent>
+                    </Card>
 
         {/* IDE Setup Tabs */}
         <Tabs defaultValue="claude" className="mb-16">
@@ -156,7 +156,7 @@ export default function DocsPage() {
           {/* Claude Desktop Setup */}
           <TabsContent value="claude">
             <Card>
-              <CardHeader>
+                      <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl">
                   <Monitor className="h-6 w-6 text-blue-600" />
                   Claude Desktop Setup
@@ -164,7 +164,7 @@ export default function DocsPage() {
                 <CardDescription>
                   Configure the Sui Developer MCP server in Claude Desktop
                 </CardDescription>
-              </CardHeader>
+                      </CardHeader>
               <CardContent className="space-y-8">
                 <div>
                   <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold">
@@ -255,7 +255,7 @@ pnpm add -g mcp-remote
                         <AlertCircle className="h-4 w-4" />
                         <strong>Important:</strong> Completely quit and restart Claude Desktop for changes to take effect.
                       </p>
-                    </div>
+                          </div>
                     <div>
                       <h4 className="mb-2 font-medium text-zinc-800">Test the integration:</h4>
                       <div className="space-y-2">
@@ -269,10 +269,10 @@ pnpm add -g mcp-remote
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
           </TabsContent>
 
           {/* Cursor Setup */}
@@ -362,15 +362,15 @@ pnpm add -g mcp-remote
                       <code className="text-sm">Help me understand Sui object ownership patterns</code>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                      </div>
+                    </CardContent>
+                  </Card>
           </TabsContent>
 
           {/* Windsurf Setup */}
           <TabsContent value="windsurf">
             <Card>
-              <CardHeader>
+                    <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl">
                   <Wrench className="h-6 w-6 text-blue-600" />
                   Windsurf Setup
@@ -378,7 +378,7 @@ pnpm add -g mcp-remote
                 <CardDescription>
                   Configure the Sui Developer MCP server in Windsurf IDE
                 </CardDescription>
-              </CardHeader>
+                    </CardHeader>
               <CardContent className="space-y-8">
                 <div>
                   <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold">
@@ -400,7 +400,7 @@ Cmd/Ctrl + Shift + P → type &quot;MCP&quot;
                         <li><strong>Linux:</strong> ~/.config/Windsurf/settings.json</li>
                       </ul>
                     </div>
-                  </div>
+                      </div>
                 </div>
 
                 <div>
@@ -449,16 +449,16 @@ pnpm add -g mcp-remote
 
         {/* Available Tools */}
         <Card className="mb-16">
-          <CardHeader>
+                    <CardHeader>
             <CardTitle className="flex items-center gap-2 text-2xl">
               <Wrench className="h-6 w-6 text-blue-600" />
               Available Tools
             </CardTitle>
-            <CardDescription>
+                      <CardDescription>
               Once configured, you&apos;ll have access to these specialized Sui development tools
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
             <div className="grid gap-6 md:grid-cols-2">
               <div className="space-y-3">
                 <h3 className="flex items-center gap-2 font-semibold text-zinc-900">
@@ -502,7 +502,7 @@ pnpm add -g mcp-remote
                     Explain &apos;InvalidObjectOwner&apos; error and how to fix it
                   </code>
                 </div>
-              </div>
+                        </div>
 
               <div className="space-y-3">
                 <h3 className="flex items-center gap-2 font-semibold text-zinc-900">
@@ -511,16 +511,16 @@ pnpm add -g mcp-remote
                 <div className="rounded-lg border bg-zinc-50 p-3">
                   <code className="text-sm text-zinc-700">
                     What are security best practices for DeFi protocols on Sui?
-                  </code>
+                          </code>
                 </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+                      </div>
+                    </CardContent>
+                  </Card>
 
         {/* Troubleshooting */}
         <Card className="mb-16">
-          <CardHeader>
+                    <CardHeader>
             <CardTitle className="flex items-center gap-2 text-2xl">
               <AlertCircle className="h-6 w-6 text-amber-600" />
               Troubleshooting
@@ -528,8 +528,8 @@ pnpm add -g mcp-remote
             <CardDescription>
               Common issues and solutions for MCP server setup
             </CardDescription>
-          </CardHeader>
-          <CardContent>
+                    </CardHeader>
+                    <CardContent>
             <div className="space-y-6">
               <div>
                 <h3 className="mb-3 font-semibold text-red-700">❌ &quot;MCP server not found&quot;</h3>
@@ -566,14 +566,14 @@ pnpm add -g mcp-remote
                   <li>Code examples include Sui Move syntax</li>
                   <li>Error explanations are Sui-specific</li>
                 </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
 
         {/* Pro Tips */}
         <Card className="mb-16 border-blue-200/50 bg-gradient-to-r from-blue-50 to-indigo-50">
-          <CardHeader>
+                    <CardHeader>
             <CardTitle className="flex items-center gap-2 text-2xl">
               <Zap className="h-6 w-6 text-blue-600" />
               Pro Tips
@@ -581,8 +581,8 @@ pnpm add -g mcp-remote
             <CardDescription>
               Get the most out of your Sui Developer MCP setup
             </CardDescription>
-          </CardHeader>
-          <CardContent>
+                    </CardHeader>
+                    <CardContent>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
@@ -590,7 +590,7 @@ pnpm add -g mcp-remote
                   <div>
                     <h4 className="font-medium text-zinc-900">Always install mcp-remote globally</h4>
                     <p className="text-sm text-zinc-600">before testing</p>
-                  </div>
+                      </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="mt-1 h-2 w-2 rounded-full bg-blue-600" />
@@ -601,11 +601,11 @@ pnpm add -g mcp-remote
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="mt-1 h-2 w-2 rounded-full bg-blue-600" />
-                  <div>
+                        <div>
                     <h4 className="font-medium text-zinc-900">Start with simple questions</h4>
                     <p className="text-sm text-zinc-600">to verify the connection</p>
-                  </div>
-                </div>
+                                </div>
+                              </div>
               </div>
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
@@ -613,14 +613,14 @@ pnpm add -g mcp-remote
                   <div>
                     <h4 className="font-medium text-zinc-900">Be specific in your questions</h4>
                     <p className="text-sm text-zinc-600">for better responses</p>
-                  </div>
-                </div>
+                          </div>
+                        </div>
                 <div className="flex items-start gap-3">
                   <div className="mt-1 h-2 w-2 rounded-full bg-blue-600" />
-                  <div>
+                        <div>
                     <h4 className="font-medium text-zinc-900">Provide code context</h4>
                     <p className="text-sm text-zinc-600">when asking about errors</p>
-                  </div>
+                        </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="mt-1 h-2 w-2 rounded-full bg-blue-600" />
@@ -630,9 +630,9 @@ pnpm add -g mcp-remote
                   </div>
                 </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+                      </div>
+                    </CardContent>
+                  </Card>
 
         {/* Call to Action */}
         <div className='text-center'>
@@ -650,17 +650,17 @@ pnpm add -g mcp-remote
                   </Button>
                 </Link>
                 <Link href='https://sui-developer-mcp.vercel.app/mcp' target='_blank'>
-                  <Button
+                        <Button
                     variant='outline'
                     className='border-zinc-600 text-black hover:bg-zinc-200'
                   >
                     <ExternalLink className='mr-2 h-4 w-4' />
                     MCP Server
-                  </Button>
+                        </Button>
                 </Link>
-              </div>
-            </CardContent>
-          </Card>
+                      </div>
+                    </CardContent>
+                  </Card>
         </div>
       </div>
     </div>
